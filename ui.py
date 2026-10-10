@@ -43,7 +43,7 @@ live_mode=False
 processing=False
 
 last_output_file='temp/output.wav'
-speaker_wav=os.environ.get('TTS_SPEAKER_WAV','speaker.wav')
+speaker_wav=os.environ.get('TTS_SPEAKER_WAV')
 current_emotion='neutral'
 
 tts_lock = threading.Lock()
@@ -147,10 +147,15 @@ def speak_text(text, lang):
             text = text[:220]
 
             code='hi' if lang=='mr' else lang
+            voice_reference = speaker_wav or 'temp/input.wav'
+            if not os.path.isfile(voice_reference):
+                raise FileNotFoundError(
+                    'Record a voice sample first or set TTS_SPEAKER_WAV.'
+                )
 
             tts.tts_to_file(
                 text=text,
-                speaker_wav=speaker_wav,
+                speaker_wav=voice_reference,
                 language=code,
                 file_path=last_output_file
             )
