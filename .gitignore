@@ -1,0 +1,31 @@
+# Local Python environment, generated files, and model downloads
+tts_env/
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+ui.build/
+ui.dist/
+temp/
+.cache/
+.hf-cache/
+
+# Audio can contain personal speech or voice samples
+*.wav
+*.mp3
+*.m4a
+*.flac
+*.ogg
+*.aac
+
+# Local notes and machine-specific files
+README PLEASEE.txt
+.env
+.env.*
+!.env.example
+*.log
+Thumbs.db
+Desktop.ini
